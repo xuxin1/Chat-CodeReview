@@ -60,6 +60,7 @@ def generate_review_note(change):
          "content": f"请review这部分代码变更{content}",
          },
     ]
+    print(f"发送给gpt 内容如下：{messages}")
     response = openai.ChatCompletion.create(
         model=openai_model_name,
         messages=messages,
@@ -82,6 +83,7 @@ def chat_review(project_id, project_commit_id, content):
         # 判断文件类型，只对py、java、class、vue文件进行review
         if any(ext in change['new_path'] for ext in ['py', 'java', 'class', 'vue']):
             try:
+                print(f"generate_review_not:{change}")
                 review_note = generate_review_note(change)
                 log.info(f'对 {change["new_path"]}  , review结果如下：{review_note}')
                 post_comments(project_id, project_commit_id, review_note)
