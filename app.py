@@ -41,4 +41,4 @@ if __name__ == '__main__':
     os.environ['STABILITY_HOST'] = 'grpc.stability.ai:443'
     app.config['JSON_AS_ASCII'] = False
     log.info('Starting the app...')
-    app.run(debug=True, host="0.0.0.0", use_reloader=False)
+    app.run(debug=True, host="0.0.0.0", port=80,use_reloader=False)
